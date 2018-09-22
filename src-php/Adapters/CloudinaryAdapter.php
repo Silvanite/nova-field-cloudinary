@@ -2,6 +2,7 @@
 
 namespace Silvanite\NovaFieldCloudinary\Adapters;
 
+use League\Flysystem\Config;
 use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter as CloudinaryBaseAdapter;
 
 class CloudinaryAdapter extends CloudinaryBaseAdapter
