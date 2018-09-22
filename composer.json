@@ -1,6 +1,6 @@
 {
     "name": "silvanite/nova-field-cloudinary",
-    "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
+    "description": "A Laravel Nova Image Field with Flysystem Adapter for storing and retrieving media from Cloudinary",
     "type": "boilerplate",
     "license": "MIT",
     "authors": [

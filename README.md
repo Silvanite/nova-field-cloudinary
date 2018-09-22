@@ -1,10 +1,10 @@
-# Boilerplate repository for creating PHP Laravel and JS Vue NPM Packages
+# Cloudinary Image Field and Adapter for Laravel Nova
 
-This boilderplate is ready to be published to Packagist and NPM JS.
+A Laravel Nova Image Field with Flysystem Adapter for storing and retrieving media from Cloudinary
 
 ## Usage
 
-Simply fork this repository and customise. Search and Replace (case-sensitive) `Silvanite` and `NovaFieldCloudinary` as well as `silvanite` and `nova-field-cloudinary` to get started.
+...
 
 ## Publishing
 
