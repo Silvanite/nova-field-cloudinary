@@ -2,7 +2,7 @@
 
 namespace Silvanite\NovaFieldCloudinary\Adapters;
 
-use CarlosOCarvalho\Flysystem\CloudinaryAdapter as CloudinaryBaseAdapter;
+use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter as CloudinaryBaseAdapter;
 
 class CloudinaryAdapter extends CloudinaryBaseAdapter
 {
