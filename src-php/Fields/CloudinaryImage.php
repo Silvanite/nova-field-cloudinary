@@ -21,19 +21,13 @@ class CloudinaryImage extends Image
         parent::__construct($name, $attribute, $disk, $storageCallback);
 
         $this->thumbnail(function () {
-            return $this->value ? Storage::disk($this->disk)->url($this->value, [
-                'width' => 32,
-                'height' => 32,
-                "crop" => "fill",
-                "gravity" => "auto",
-            ]) : null;
-        })->preview(function () {
-            return $this->value ? Storage::disk($this->disk)->url($this->value, [
+            return $this->value ? cloudinary_image($this->value, [
                 'width' => 318,
-                'height' => 212,
-                "crop" => "fill",
-                "gravity" => "auto",
-            ]) : null;
+            ], $this->disk) : null;
+        })->preview(function () {
+            return $this->value ? cloudinary_image($this->value, [
+                'width' => 318,
+            ], $this->disk) : null;
         });
     }
 }

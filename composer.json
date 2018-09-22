@@ -18,6 +18,9 @@
         "squizlabs/php_codesniffer": ">=3.1"
     },
     "autoload": {
+        "files": [
+            "src-php/helpers.php"
+        ],
         "psr-4": {
             "Silvanite\\NovaFieldCloudinary\\": "src-php/"
         }

@@ -12,7 +12,7 @@ Install the package using composer
 composer require silvanite/nova-field-cloudinary
 ```
 
-Add the cloudinary disk to the filesystem config
+Add the cloudinary disk to the filesystem config and set the environment variables for your Cloudinary account.
 
 ```php
 // config/filesystem.php
@@ -30,9 +30,7 @@ return [
 ];
 ```
 
-Set the environment variables for your Cloudinary account.
-
-## Usage
+## Usage
 
 Simply use the `CloudinaryImage` field in your Resource's fields instead of the standard Nova `Image` field. This component extends the default Image field so you can use it with all the same options as the standard field.
 
@@ -50,24 +48,31 @@ public function fields(Request $request)
 
 This will essentially do the same as `Image::make()->disk('cloudinary')` but it will also serve resized and optimised preview and thumbnail images within the Nova UI itself. However if you don't want this you can just use the standard `Image` field.
 
-To use images in your application you can either use the `cloudinary_url()` helper or read the image using the `Storage` facade.
+To use images in your application you can either use the `cloudinary_image` helper or read the image using the `Storage` facade.
 
 ```php
-// Using the Storage Facade
+// Using the helper (with transformation)
 
-return Storage::disk('cloudinary')->url($this->profile_photo, [
+return cloudinary_image($this->profile_photo, [
     "width" => 200,
     "height" => 200,
     "crop" => "fill",
     "gravity" => "auto",
-]);
+])
 
-// Or using the helper
+// Using the Storage Facade (without transformation)
 
-return cloudinary_url($this->profile_photo, [
-    "width" => 200,
-    "height" => 200,
-    "crop" => "fill",
-    "gravity" => "auto",
+return Storage::disk('cloudinary')->url($this->profile_photo);
+
+// Using the Storage Facade (with transformation)
+
+return Storage::disk('cloudinary')->url([
+    'public_id' => $this->profile_photo,
+    'options' => [
+        "width" => 200,
+        "height" => 200,
+        "crop" => "fill",
+        "gravity" => "auto",
+    ],
 ])
 ```
