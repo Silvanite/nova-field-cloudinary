@@ -34,7 +34,7 @@
         "eslint-plugin-vue": "^4.7.0",
         "husky": "^0.14.3",
         "jsonlint": "^1.6.3",
-        "lint-staged": "^7.2.0",
+        "lint-staged": "^7.3.0",
         "markdownlint-cli": "^0.11.0",
         "rollup": "^0.63.2",
         "rollup-plugin-babel": "^3.0.7",
