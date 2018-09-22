@@ -1,7 +1,14 @@
 {
     "name": "silvanite/nova-field-cloudinary",
     "description": "A Laravel Nova Image Field with Flysystem Adapter for storing and retrieving media from Cloudinary",
-    "type": "boilerplate",
+    "keywords": [
+        "laravel",
+        "nova",
+        "field",
+        "cloudinary",
+        "media",
+        "images"
+    ],
     "license": "MIT",
     "authors": [
         {
