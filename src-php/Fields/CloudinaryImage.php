@@ -3,6 +3,7 @@
 namespace Silvanite\NovaFieldCloudinary\Fields;
 
 use Laravel\Nova\Fields\Image;
+use Illuminate\Support\Facades\Storage;
 
 class CloudinaryImage extends Image
 {
