@@ -31,7 +31,8 @@ class CloudinaryImage extends Image
             ], $this->disk) : null;
         })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
-            return Storage::disk($this->disk)->delete($path['filename']);
+            Storage::disk($this->disk)->delete($path['filename']);
+            return $this->columnsThatShouldBeDeleted();
         });
     }
 }
