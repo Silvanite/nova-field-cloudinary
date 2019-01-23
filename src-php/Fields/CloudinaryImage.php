@@ -30,13 +30,10 @@ class CloudinaryImage extends Image
                 'width' => 318,
             ], $this->disk) : null;
         })->download(function () {
-            $image_address = cloudinary_image($this->value, [
-                "width" => 1.0,
-                "height" => 1.0,
-            ]);
+            $image_address = cloudinary_image($this->value);
             return response()->streamDownload(function () use ($image_address) {
                 echo file_get_contents($image_address);
-            }, 'image-download.jpg');
+            }, $this->value);
         })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
             Storage::disk($this->disk)->delete($path['filename']);
