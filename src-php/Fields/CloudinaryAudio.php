@@ -22,8 +22,8 @@ class CloudinaryAudio extends Audio
         parent::__construct($name, $attribute, $disk, $storageCallback);
 
         $this->storeAs(function (Request $request) {
-            $name = $request->featured_voice_over->getClientOriginalName();
-            $ext = '.' . $request->featured_voice_over->getClientOriginalExtension();
+            $name = $request->{$this->attribute}->getClientOriginalName();
+            $ext = '.' . $request->{$this->attribute}->getClientOriginalExtension();
 
             return sha1($name . time()) . $ext;
         });
