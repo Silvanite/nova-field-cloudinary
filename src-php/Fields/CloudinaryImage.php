@@ -24,10 +24,12 @@ class CloudinaryImage extends Image
         $this->thumbnail(function () {
             return $this->value ? cloudinary_image($this->value, [
                 'width' => 318,
+                'fetch_format' => 'auto',
             ], $this->disk) : null;
         })->preview(function () {
             return $this->value ? cloudinary_image($this->value, [
                 'width' => 318,
+                'fetch_format' => 'auto',
             ], $this->disk) : null;
         })->download(function () {
             $image_address = cloudinary_image($this->value);
