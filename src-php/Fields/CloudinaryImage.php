@@ -40,6 +40,6 @@ class CloudinaryImage extends Image
             $path = pathinfo($model->{$this->attribute});
             Storage::disk($this->disk)->delete($path['filename']);
             return $this->columnsThatShouldBeDeleted();
-        });
+        })->help('Ensure when transformed to the size displayed on site, the image is less than the max file size for your Cloudinary account.');
     }
 }
