@@ -78,11 +78,12 @@ return Storage::disk('cloudinary')->url([
 ```
 
 ### Max file size
-Cloudinary imposes maximum file sizes on images depending on your account plan.  At the time of writing the free plan allows images up to 10M.
+
+Cloudinary imposes maximum file sizes on images depending on your account plan.  At the time of writing the free plan allows images up to 10mb.
 
 If a successfully uploaded image is transformed by cloudinary and upscaled past this file size, the download of that image will fail with a 400 error on the front end.
 
-This situation is especially likely to occur if working with GIF images which are typically quite large files at smaller resolutions, liable to upscaling by image processors.
+This situation is especially likely to occur if working with animated GIF images which are typically quite large files at smaller resolutions, liable to upscaling by image processors.
 
 ## Using the CloudinaryAudio Field
 
