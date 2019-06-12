@@ -19,11 +19,13 @@ class CloudinaryAdapter extends CloudinaryBaseAdapter
      */
     public function writeStream($path, $resource, Config $config)
     {
-        $path = pathinfo($path)['filename'];
+        $pathinfo = pathinfo($path);
+        $folder = $pathinfo['dirname'];
+        $path = $pathinfo['filename'];
 
         $resource_metadata = stream_get_meta_data($resource);
-        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], ['public_id' => $path, 'resource_type' => 'auto']);
-        
+        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], ['folder' => $folder, 'public_id' => $path, 'resource_type' => 'auto']);
+
         return $uploaded_metadata;
     }
 
