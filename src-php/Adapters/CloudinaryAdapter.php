@@ -23,8 +23,14 @@ class CloudinaryAdapter extends CloudinaryBaseAdapter
         $folder = $pathinfo['dirname'];
         $path = $pathinfo['filename'];
 
+        $options = ['public_id' => $path, 'resource_type' => 'auto'];
+
+        if ($folder != '.') {
+            $options['folder'] = $folder;
+        }
+
         $resource_metadata = stream_get_meta_data($resource);
-        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], ['folder' => $folder, 'public_id' => $path, 'resource_type' => 'auto']);
+        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], $options);
 
         return $uploaded_metadata;
     }
