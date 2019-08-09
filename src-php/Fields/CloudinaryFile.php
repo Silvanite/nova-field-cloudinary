@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\File;
 use Illuminate\Support\Facades\Storage;
 
-class CloudinaryFile extends Field
+class CloudinaryFile extends File
 {
     /**
      * Create a new field.
