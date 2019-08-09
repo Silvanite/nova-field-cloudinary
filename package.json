@@ -1,6 +1,6 @@
 {
     "name": "@silvanite/nova-field-cloudinary",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "A Laravel Nova Image Field with Flysystem Adapter for storing and retrieving media from Cloudinary",
     "main": "dist-js/index.js",
     "scripts": {
