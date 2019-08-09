@@ -33,7 +33,7 @@ class CloudinaryFile extends Field
     {
         $this->previewUrlCallback = function () {
             return $this->value
-                ? cloudinary_audio($this->value, [], $this->disk)
+                ? cloudinary_file($this->value, [], $this->disk)
                 : null;
         };
 
