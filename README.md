@@ -119,3 +119,21 @@ return Storage::disk('cloudinary')->url([
     ],
 ])
 ```
+
+## Using the CloudinaryFile Field
+
+Simply use the `CloudinaryFile` field in your Resource's fields instead of the standard Nova `File` field. This component extends the default File field so you can use it with all the same options as the standard field.
+
+```php
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryFile;
+
+public function fields(Request $request)
+{
+    return [
+        ...
+        CloudinaryFile::make('Document'),
+    ]
+}
+```
+
+This field sets the disk in use to `Cloudinary` and ensures the media is stored in the database field with the correct file extension.
