@@ -52,6 +52,23 @@ if (!function_exists('cloudinary_audio')) {
     }
 }
 
+if (!function_exists('cloudinary_video')) {
+    /**
+     * Get an optimised public url for a video file by it's public id
+     *
+     * @param string $path
+     * @param array $options
+     * @param string $disk
+     * @return string
+     */
+    function cloudinary_video(string $path, array $options = [], string $disk = 'cloudinary')
+    {
+        $options = array_merge(['resource_type' => 'video'], $options);
+
+        return cloudinary_fetch($path, $options, $disk);
+    }
+}
+
 if (!function_exists('cloudinary_file')) {
     /**
      * Get an optimised public url for a file by it's public id
