@@ -25,6 +25,10 @@ class CloudinaryAudio extends Audio
             $ext = '.' . $request->{$this->attribute}->getClientOriginalExtension();
 
             return sha1($name . time()) . $ext;
+        })->delete(function (Request $request, $model) {
+            $path = pathinfo($model->{$this->attribute});
+            Storage::disk($this->disk)->delete($path['filename']);
+            return $this->columnsThatShouldBeDeleted();
         });
     }
 
