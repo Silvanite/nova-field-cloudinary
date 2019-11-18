@@ -22,7 +22,10 @@ class CloudinaryAdapter extends CloudinaryBaseAdapter
         $path = pathinfo($path)['filename'];
 
         $resource_metadata = stream_get_meta_data($resource);
-        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], ['public_id' => $path, 'resource_type' => 'auto']);
+        $uploaded_metadata = Uploader::upload($resource_metadata['uri'], [
+            'public_id' => $path,
+            'resource_type' => 'auto',
+        ]);
         
         return $uploaded_metadata;
     }
