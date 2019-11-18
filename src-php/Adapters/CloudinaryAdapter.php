@@ -57,4 +57,40 @@ class CloudinaryAdapter extends CloudinaryBaseAdapter
 
         return cloudinary_url($path);
     }
+
+    /**
+     * Delete a resource by the given public id.
+     *
+     * @param string $path
+     * @return boolean
+     */
+    public function delete($path)
+    {
+        return collect($this->resource_types)->filter(function ($resource_type) use ($path) {
+            try {
+                $result = Uploader::destroy($path, ['resource_type' => $resource_type, 'invalidate' => true]);
+                is_array($result) ? $result['result'] == 'ok' : false;
+            } catch (\Exception $e) {
+                return false;
+            }
+        })->count() >= 1;
+    }
+
+    /**
+     * Check if a resource with the provided public id exists
+     *
+     * @param string $path
+     * @return boolean
+     */
+    public function has($path)
+    {
+        return collect($this->resource_types)->filter(function ($resource_type) use ($path) {
+            try {
+                $this->api->resource($path, ['resource_type' => $resource_type]);
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        })->count() >= 1;
+    }
 }
