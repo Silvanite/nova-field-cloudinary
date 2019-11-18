@@ -4,7 +4,6 @@ namespace Silvanite\NovaFieldCloudinary\Fields;
 
 use Illuminate\Http\Request;
 use Davidpiesse\Audio\Audio;
-use Illuminate\Support\Facades\Storage;
 
 class CloudinaryAudio extends Audio
 {
@@ -31,7 +30,7 @@ class CloudinaryAudio extends Audio
 
     public function preview(callable $previewUrlCallback)
     {
-        $this->previewUrlCallback = function(){
+        $this->previewUrlCallback = function () {
             return $this->value
                 ? cloudinary_audio($this->value, [], $this->disk)
                 : null;
