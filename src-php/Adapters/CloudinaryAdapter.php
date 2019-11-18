@@ -8,6 +8,8 @@ use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter as CloudinaryBaseAdap
 
 class CloudinaryAdapter extends CloudinaryBaseAdapter
 {
+    protected $resource_types = ['image', 'raw', 'video'];
+
     /**
      * Write a new file using a stream.
      *
