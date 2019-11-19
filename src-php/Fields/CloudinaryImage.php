@@ -23,7 +23,9 @@ class CloudinaryImage extends Image
 
         $this->thumbnail(function () {
             return $this->value ? cloudinary_image($this->value, [
-                'width' => 318,
+                'width' => 64,
+                'height' => 64,
+                'crop' => 'fill',
                 'fetch_format' => 'auto',
             ], $this->disk) : null;
         })->preview(function () {

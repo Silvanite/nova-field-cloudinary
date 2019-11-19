@@ -4,7 +4,6 @@ namespace Silvanite\NovaFieldCloudinary\Fields;
 
 use Illuminate\Http\Request;
 use Davidpiesse\Audio\Audio;
-use Illuminate\Support\Facades\Storage;
 
 class CloudinaryAudio extends Audio
 {
@@ -26,12 +25,16 @@ class CloudinaryAudio extends Audio
             $ext = '.' . $request->{$this->attribute}->getClientOriginalExtension();
 
             return sha1($name . time()) . $ext;
+        })->delete(function (Request $request, $model) {
+            $path = pathinfo($model->{$this->attribute});
+            Storage::disk($this->disk)->delete($path['filename']);
+            return $this->columnsThatShouldBeDeleted();
         });
     }
 
     public function preview(callable $previewUrlCallback)
     {
-        $this->previewUrlCallback = function(){
+        $this->previewUrlCallback = function () {
             return $this->value
                 ? cloudinary_audio($this->value, [], $this->disk)
                 : null;

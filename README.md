@@ -120,6 +120,41 @@ return Storage::disk('cloudinary')->url([
 ])
 ```
 
+## Using the CloudinaryVideo Field
+
+Simply use the `CloudinaryVideo` field in your Resource's fields. This component extends the default Nova File field so you can use it with all the same options as the standard field.
+
+```php
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryVideo;
+
+public function fields(Request $request)
+{
+    return [
+        ...
+        CloudinaryVideo::make('Video Source'),
+    ]
+}
+```
+
+This field sets the disk in use to `Cloudinary` and ensures the media is stored in the database field with the correct file extension.
+
+To use the video files in your application you can either use the `cloudinary_video()` helper or read the video file using the `Storage` facade.
+
+```php
+// Using the video helper
+
+return cloudinary_video($this->video_source);
+
+// Using the Storage Facade
+
+return Storage::disk('cloudinary')->url([
+    'public_id' => $this->audio_source,
+    'options' => [
+        "resource_type" => "video",
+    ],
+])
+```
+
 ## Using the CloudinaryFile Field
 
 Simply use the `CloudinaryFile` field in your Resource's fields instead of the standard Nova `File` field. This component extends the default File field so you can use it with all the same options as the standard field.

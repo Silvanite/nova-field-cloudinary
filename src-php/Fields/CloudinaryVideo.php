@@ -4,8 +4,9 @@ namespace Silvanite\NovaFieldCloudinary\Fields;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\File;
+use Illuminate\Support\Facades\Storage;
 
-class CloudinaryFile extends File
+class CloudinaryVideo extends File
 {
     /**
      * Create a new field.
@@ -25,21 +26,10 @@ class CloudinaryFile extends File
             $ext = '.' . $request->{$this->attribute}->getClientOriginalExtension();
 
             return sha1($name . time()) . $ext;
-        })>delete(function (Request $request, $model) {
+        })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
             Storage::disk($this->disk)->delete($path['filename']);
             return $this->columnsThatShouldBeDeleted();
         });
-    }
-
-    public function preview(callable $previewUrlCallback)
-    {
-        $this->previewUrlCallback = function () {
-            return $this->value
-                ? cloudinary_file($this->value, [], $this->disk)
-                : null;
-        };
-
-        return $this;
     }
 }
