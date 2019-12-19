@@ -172,3 +172,23 @@ public function fields(Request $request)
 ```
 
 This field sets the disk in use to `Cloudinary` and ensures the media is stored in the database field with the correct file extension.
+
+## Configuration
+
+If you want to use any of the [optional parameters](https://cloudinary.com/documentation/image_upload_api_reference#optional_parameters) of the Cloudinary Upload API, you can use the `cloudinary` method to send additional parameters.
+
+The following code uploads images to the images folder instead of the Cloudinary root.
+
+```php
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
+
+public function fields(Request $request)
+{
+    return [
+        ...
+        CloudinaryImage::make('Image')->cloudinary([
+            'folder' => 'images'
+        ]),
+    ]
+}
+```
