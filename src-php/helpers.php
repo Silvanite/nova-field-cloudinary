@@ -80,7 +80,7 @@ if (!function_exists('cloudinary_file')) {
      */
     function cloudinary_file(string $path, array $options = [], string $disk = 'cloudinary')
     {
-        $options = array_merge(['resource_type' => 'auto'], $options);
+        $options = array_except($options, ['resource_type']);
 
         return cloudinary_fetch($path, $options, $disk);
     }

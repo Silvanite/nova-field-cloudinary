@@ -25,9 +25,10 @@ class CloudinaryFile extends File
             $ext = '.' . $request->{$this->attribute}->getClientOriginalExtension();
 
             return sha1($name . time()) . $ext;
-        })>delete(function (Request $request, $model) {
+        })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
-            Storage::disk($this->disk)->delete($path['filename']);
+            \Storage::disk($this->disk)->delete($path['filename']);
+
             return $this->columnsThatShouldBeDeleted();
         });
     }
