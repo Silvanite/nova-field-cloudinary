@@ -32,15 +32,4 @@ class CloudinaryFile extends File
             return $this->columnsThatShouldBeDeleted();
         });
     }
-
-    public function preview(callable $previewUrlCallback)
-    {
-        $this->previewUrlCallback = function () {
-            return $this->value
-                ? cloudinary_file($this->value, [], $this->disk)
-                : null;
-        };
-
-        return $this;
-    }
 }
