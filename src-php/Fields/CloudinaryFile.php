@@ -43,19 +43,8 @@ class CloudinaryFile extends File
             return sha1($name . time()) . $ext;
         })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
-            Storage::disk($this->disk)->delete($path['dirname'] .'/'. $path['filename']);
+            \Storage::disk($this->disk)->delete($path['dirname'] .'/'. $path['filename']);
             return $this->columnsThatShouldBeDeleted();
         });
-    }
-
-    public function preview(callable $previewUrlCallback)
-    {
-        $this->previewUrlCallback = function () {
-            return $this->value
-                ? cloudinary_file($this->value, [], $this->disk)
-                : null;
-        };
-
-        return $this;
     }
 }
