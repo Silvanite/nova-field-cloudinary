@@ -49,10 +49,16 @@ class CloudinaryImage extends Image
                 'fetch_format' => 'auto',
             ], $this->disk) : null;
         })->download(function () {
+
+            // Get Cloudinary URL of image
             $image_address = cloudinary_image($this->value);
+
+            // Get filename without folders
+            $filename = substr( strrchr( $this->value, '/' ), 1 );
+
             return response()->streamDownload(function () use ($image_address) {
                 echo file_get_contents($image_address);
-            }, $this->value);
+            }, $filename);
         })->delete(function (Request $request, $model) {
             $path = pathinfo($model->{$this->attribute});
             Storage::disk($this->disk)->delete($path['dirname'] .'/'. $path['filename']);
