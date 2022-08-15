@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.0.0",
         "laravel/framework": ">=5.0.0",
-        "carlosocarvalho/flysystem-cloudinary": "^2.0",
+        "carlosocarvalho/flysystem-cloudinary": "^1.0",
         "davidpiesse/nova-audio": "^0.0.1"
     },
     "require-dev": {
