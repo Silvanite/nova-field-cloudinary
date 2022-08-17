@@ -14,7 +14,11 @@ if (!function_exists('cloudinary_fetch')) {
      */
     function cloudinary_fetch(string $path, array $options = [], string $disk = 'cloudinary')
     {
-        return \Illuminate\Support\Facades\Storage::disk($disk)->url($path);
+        if (is_array($path)) {
+            return Media::fromParams($path['public_id'], $path['options']);
+        }
+
+        return Media::fromParams($path);
     }
 }
 
