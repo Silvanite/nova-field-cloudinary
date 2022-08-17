@@ -29,7 +29,6 @@ class PackageServiceProvider extends ServiceProvider
     public function register()
     {
         Storage::extend('cloudinary', function ($app, $config) {
-            dd("Test");
             if (!empty(env('CLOUDINARY_URL'))){
                 $adapter = new CloudinaryAdapter();
             } else {
