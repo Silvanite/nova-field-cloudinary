@@ -1,6 +1,7 @@
 <?php
 
 use Cloudinary\Asset\Media;
+use Illuminate\Support\Str;
 
 if (!function_exists('cloudinary_fetch')) {
     /**
@@ -13,7 +14,7 @@ if (!function_exists('cloudinary_fetch')) {
      */
     function cloudinary_fetch(string $path, array $options = [], string $disk = 'cloudinary')
     {
-        return Media::fromParams($path, $options);
+        return \Illuminate\Support\Facades\Storage::disk($disk)->url($path);
     }
 }
 
