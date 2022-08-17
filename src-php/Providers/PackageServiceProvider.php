@@ -6,7 +6,7 @@ use Illuminate\Routing\Router;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use League\Flysystem\FilesystemAdapter;
+use Illuminate\Filesystem\FilesystemAdapter;
 use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter;
 
 class PackageServiceProvider extends ServiceProvider
