@@ -19,6 +19,7 @@
     "require": {
         "php": ">=7.0.0",
         "laravel/framework": ">=5.0.0",
+        "laravel/nova": "^4.12",
         "carlosocarvalho/flysystem-cloudinary": "^2.0",
         "davidpiesse/nova-audio": "^0.0.1"
     },
@@ -33,6 +34,12 @@
             "Silvanite\\NovaFieldCloudinary\\": "src-php/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "extra":{
         "laravel": {
             "providers": [

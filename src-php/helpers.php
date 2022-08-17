@@ -1,5 +1,7 @@
 <?php
 
+use Cloudinary\Asset\Media;
+
 if (!function_exists('cloudinary_fetch')) {
     /**
      * Get an optimised public url for an image by it's public id
@@ -11,10 +13,7 @@ if (!function_exists('cloudinary_fetch')) {
      */
     function cloudinary_fetch(string $path, array $options = [], string $disk = 'cloudinary')
     {
-        return \Illuminate\Support\Facades\Storage::disk($disk)->url([
-            'public_id' => $path,
-            'options' => $options,
-        ]);
+        return Media::fromParams($path, $options);
     }
 }
 

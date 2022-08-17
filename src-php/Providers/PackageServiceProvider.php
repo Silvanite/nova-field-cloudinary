@@ -6,7 +6,8 @@ use Illuminate\Routing\Router;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Silvanite\NovaFieldCloudinary\Adapters\CloudinaryAdapter;
+use League\Flysystem\FilesystemAdapter;
+use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -17,9 +18,7 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        Storage::extend('cloudinary', function ($app, $config) {
-            return new Filesystem(new CloudinaryAdapter($config));
-        });
+        //
     }
 
     /**
@@ -29,6 +28,19 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Storage::extend('cloudinary', function ($app, $config) {
+            dd("Test");
+            if (!empty(env('CLOUDINARY_URL'))){
+                $adapter = new CloudinaryAdapter();
+            } else {
+                $adapter = new CloudinaryAdapter($config);
+            }
+
+            return new FilesystemAdapter(
+                new Filesystem($adapter, $config),
+                $adapter,
+                $config
+            );
+        });
     }
 }
